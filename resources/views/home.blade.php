@@ -72,9 +72,8 @@
         <h1>MusanFilms</h1>
         <div>
             @auth
-                @if(auth()->user()->role === 'admin')
-                    <a href="{{ route('admin.crear.pelicula') }}" class="admin-btn">Crear Película</a>
-                    <a href="{{ route('admin.crear.serie') }}" class="admin-btn">Crear Serie</a>
+                @if(Auth::user() && Auth::user()->role === 'admin')
+                <a href="{{ route('admin.panel') }}">Administración</a>
                 @endif
                 
                 <a href="{{ route('logout') }}" 

@@ -4,7 +4,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
+// Logout
 Route::post('/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
@@ -12,16 +14,34 @@ Route::post('/logout', function () {
     return redirect('/inicio');
 })->name('logout');
 
+// Rutas públicas
 Route::get('/inicio', [LoginController::class, 'showWelcome'])->name('inicio');
-
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
-Route::get('/registro', [LoginController::class, 'showRegisterForm'])->name('registro'); // Cambiar a 'registro'
-Route::post('/registro', [LoginController::class, 'registro'])->name('registro.post');  // Cambiar a 'registro'
+Route::get('/registro', [LoginController::class, 'showRegisterForm'])->name('registro');
+Route::post('/registro', [LoginController::class, 'registro'])->name('registro.post');
 Route::get('/home', [LoginController::class, 'showHome'])->name('home');
 
-
+// Rutas autenticadas
 Route::middleware(['auth'])->group(function () {
+
+    // Panel
+    Route::get('/admin', [AdminController::class, 'panel'])->name('admin.panel');
+
+    // Crear
     Route::get('/admin/crear-pelicula', [AdminController::class, 'crearPelicula'])->name('admin.crear.pelicula');
+    Route::post('/admin/peliculas/guardar', [AdminController::class, 'guardarPelicula'])->name('admin.guardar.pelicula');
     Route::get('/admin/crear-serie', [AdminController::class, 'crearSerie'])->name('admin.crear.serie');
+    Route::post('/admin/series/guardar', [AdminController::class, 'guardarSerie'])->name('admin.guardar.serie');
+
+    // Editar y eliminar películas
+    Route::get('/admin/peliculas/{id}/editar', [AdminController::class, 'editarPelicula'])->name('admin.editar.pelicula');
+    Route::put('/admin/peliculas/{id}', [AdminController::class, 'actualizarPelicula'])->name('admin.actualizar.pelicula');
+    Route::delete('/admin/peliculas/{id}', [AdminController::class, 'eliminarPelicula'])->name('admin.eliminar.pelicula');
+
+    // Editar y eliminar series
+    Route::get('/admin/series/{id}/editar', [AdminController::class, 'editarSerie'])->name('admin.editar.serie');
+    Route::put('/admin/series/{id}', [AdminController::class, 'actualizarSerie'])->name('admin.actualizar.serie');
+    Route::delete('/admin/series/{id}', [AdminController::class, 'eliminarSerie'])->name('admin.eliminar.serie');
 });
+
