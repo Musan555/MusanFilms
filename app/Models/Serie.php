@@ -12,9 +12,6 @@ class Serie extends Model
     protected $fillable = [
         'titulo',
         'descripcion',
-        'temporadas',
-        'capitulos_por_temporada',
-        'genero_id',
         'categoria_id',
         'portada',
         'fecha_lanzamiento',
@@ -29,4 +26,10 @@ class Serie extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function temporadas()
+    {
+        return $this->hasMany(Temporada::class);
+    }
 }
+

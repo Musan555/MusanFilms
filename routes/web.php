@@ -3,6 +3,11 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;  
+use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\SerieController;
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,17 +25,25 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/registro', [LoginController::class, 'showRegisterForm'])->name('registro');
 Route::post('/registro', [LoginController::class, 'registro'])->name('registro.post');
-Route::get('/home', [LoginController::class, 'showHome'])->name('home');
 
-// Rutas autenticadas
+// Ruta principal para usuarios autenticados
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Rutas protegidas por autenticación
 Route::middleware(['auth'])->group(function () {
 
-    // Panel
+    // Reproducción y detalle
+    Route::get('/pelicula/{id}', [PeliculaController::class, 'reproducir'])->name('reproducir.pelicula');
+    Route::get('/serie/{id}', [SerieController::class, 'reproducir'])->name('reproducir.serie');
+
+    // Panel principal
     Route::get('/admin', [AdminController::class, 'panel'])->name('admin.panel');
 
-    // Crear
+    // Crear películas
     Route::get('/admin/crear-pelicula', [AdminController::class, 'crearPelicula'])->name('admin.crear.pelicula');
     Route::post('/admin/peliculas/guardar', [AdminController::class, 'guardarPelicula'])->name('admin.guardar.pelicula');
+
+    // Crear series
     Route::get('/admin/crear-serie', [AdminController::class, 'crearSerie'])->name('admin.crear.serie');
     Route::post('/admin/series/guardar', [AdminController::class, 'guardarSerie'])->name('admin.guardar.serie');
 
@@ -43,5 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/series/{id}/editar', [AdminController::class, 'editarSerie'])->name('admin.editar.serie');
     Route::put('/admin/series/{id}', [AdminController::class, 'actualizarSerie'])->name('admin.actualizar.serie');
     Route::delete('/admin/series/{id}', [AdminController::class, 'eliminarSerie'])->name('admin.eliminar.serie');
-});
 
+
+});

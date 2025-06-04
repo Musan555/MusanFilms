@@ -20,9 +20,6 @@ class LoginController extends Controller
         return view('inicio'); 
     }
     
-    public function showHome() {
-        return view('home'); // vista tras login
-    }
 
     public function login(Request $request)
     {
