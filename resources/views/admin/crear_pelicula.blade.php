@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Crear Película - MusanFilms</title>
+  <meta charset="UTF-8" />
+  <title>Crear Película - MusanFilms</title>
+  <link rel="stylesheet" href="{{ asset('storage/css/cpeli.css') }}">
+  
 </head>
 <body>
-    <div class="container">
-        <h1>Crear Película</h1>
+  <div class="container">
+    <h1>Crear Película</h1>
 
-        @if (session('success'))
-            <div style="color: green; font-weight: bold;">{{ session('success') }}</div>
-        @endif
+    @if (session('success'))
+      <div class="success-message">{{ session('success') }}</div>
+    @endif
 
-        <form action="{{ route('admin.guardar.pelicula') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+    <form action="{{ route('admin.guardar.pelicula') }}" method="POST" enctype="multipart/form-data">
+      @csrf
 
-            <label for="titulo">Título</label><br>
-            <input type="text" name="titulo" required><br><br>
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" required placeholder="Título de la película">
 
-            <label for="descripcion">Descripción</label><br>
-            <textarea name="descripcion" rows="4" required></textarea><br><br>
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" name="descripcion" rows="4" required placeholder="Descripción"></textarea>
 
-            <label for="duracion">Duración (minutos)</label><br>
-            <input type="number" name="duracion" required><br><br>
+      <label for="duracion">Duración (minutos)</label>
+      <input type="number" id="duracion" name="duracion" min="1" required placeholder="Duración en minutos">
 
-            <label for="anio_estreno">Año de Estreno</label><br>
-            <input type="number" name="anio_estreno" required><br><br>
+      <label for="anio_estreno">Año de Estreno</label>
+      <input type="number" id="anio_estreno" name="anio_estreno" min="1888" required placeholder="Año de estreno">
 
-            <label for="genero_id" class="form-label">Géneros</label><br>
-            @foreach($generos as $genero)
-                <label>
-                    <input type="checkbox" name="genero_id[]" value="{{ $genero->id }}">
-                    {{ $genero->nombre }}
-                </label><br>
-            @endforeach
+      <label>Géneros</label>
+      <div class="checkbox-group">
+        @foreach($generos as $genero)
+          <label>
+            <input type="checkbox" name="genero_id[]" value="{{ $genero->id }}">
+            {{ $genero->nombre }}
+          </label>
+        @endforeach
+      </div>
 
+      <label for="categoria_id">Categoría</label>
+      <select id="categoria_id" name="categoria_id" required>
+        @foreach($categorias as $categoria)
+          <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+        @endforeach
+      </select>
 
-            <label for="categoria_id">Categoría</label><br>
-            <select name="categoria_id" required>
-                @foreach($categorias as $categoria)
-                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                @endforeach
-            </select><br><br>
+      <label for="portada">Portada</label>
+      <input type="file" id="portada" name="portada" accept="image/*" required>
 
-            <label for="portada">Portada</label><br>
-            <input type="file" name="portada" required><br><br>
+      <label for="url">URL de reproducción (opcional)</label>
+      <input type="url" id="url" name="url" placeholder="URL de reproducción">
 
-            <label for="url">URL de reproducción</label><br>
-            <input type="url" name="url"><br><br>
-            
-            <button type="submit">Guardar Película</button>
-            <a href="{{ route('admin.panel') }}" style="margin-left: 10px;">
-                <button type="button">Volver al Panel</button>
-            </a>
-        </form>
-    </div>
+      <div class="btn-group">
+        <button type="submit">Guardar Película</button>
+        <a href="{{ route('admin.panel') }}" class="btn-back" role="button">Volver al Panel</a>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

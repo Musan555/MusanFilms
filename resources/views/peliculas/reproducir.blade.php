@@ -1,82 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ $pelicula->titulo }} - MusanFilms</title>
-    <style>
-        body {
-            background-color: #0f0f0f;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #1e1e1e;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .info {
-            margin-top: 15px;
-        }
-        button.play-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            background-color: #1f75fe;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button.play-btn:hover {
-            background-color: #084aa8;
-        }
-        .iframe-container {
-            margin-top: 20px;
-            display: none;
-        }
-        iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-            border-radius: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ $pelicula->titulo }} - MusanFilms</title>
+  <link rel="stylesheet" href="{{ asset('storage/css/repropeli.css') }}">
+
 </head>
 <body>
-    <a href="{{ route('home') }}" style="background: #1f75fe; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">‹ Volver</a>
-    <div class="container">
-        <h1>{{ $pelicula->titulo }}</h1>
-        <img src="{{ $pelicula->portada ? asset('storage/' . $pelicula->portada) : 'https://via.placeholder.com/600x900' }}" alt="{{ $pelicula->titulo }}">
 
-        <div class="info">
-            <p><strong>Descripción:</strong> {{ $pelicula->descripcion }}</p>
-            <p><strong>Duración:</strong> {{ $pelicula->duracion }} minutos</p>
-            <p><strong>Año de estreno:</strong> {{ $pelicula->anio_estreno }}</p>
-            <p><strong>Categoría:</strong> {{ $pelicula->categoria->nombre ?? 'Sin categoría' }}</p>
-        </div>
+<a href="{{ route('home') }}" class="volver">‹ Volver</a>
 
-        <button class="play-btn" onclick="mostrarReproductor()">Reproducir</button>
+<div class="container">
+  <div class="poster">
+    <img src="{{ $pelicula->portada ? asset('storage/' . $pelicula->portada) : 'https://via.placeholder.com/600x900' }}" alt="{{ $pelicula->titulo }}">
+  </div>
 
-        <div class="iframe-container" id="player-container">
-            <iframe src="{{ $pelicula->url }}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-        </div>
+  <div class="info">
+    <h1>{{ $pelicula->titulo }}</h1>
+    <p><strong>Sinopsis:</strong> {{ $pelicula->descripcion }}</p>
+
+    <div class="tags">
+      <span>Categoría: {{ $pelicula->categoria->nombre ?? 'Sin categoría' }}</span>
+      <span>Duración: {{ $pelicula->duracion }} min</span>
+      <span>Año: {{ $pelicula->anio_estreno }}</span>
     </div>
 
-    <script>
-        function mostrarReproductor() {
-            const container = document.getElementById('player-container');
-            container.style.display = 'block';
-            // Opcional: hacer que el botón desaparezca al pulsarlo
-            event.target.style.display = 'none';
-        }
-    </script>
+    <button class="play-btn" onclick="mostrarReproductor(this)">Reproducir</button>
+  </div>
+</div>
+
+<div class="iframe-container" id="player-container">
+  <iframe src="{{ $pelicula->url }}" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+</div>
+
+<script>
+  function mostrarReproductor(btn) {
+    document.getElementById('player-container').style.display = 'block';
+    btn.style.display = 'none';
+    window.scrollTo({
+      top: document.getElementById('player-container').offsetTop - 20,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
 </body>
 </html>
