@@ -21,3 +21,14 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Storage: incluir css, images y solo la carpeta portadas
+/storage/*
+!storage/app/
+!storage/app/public/
+!storage/app/public/css/
+!storage/app/public/css/**         # Todo dentro de css
+!storage/app/public/images/
+!storage/app/public/images/**      # Todo dentro de images
+!storage/app/public/portadas/      # Solo la carpeta
+storage/app/public/portadas/*      # Ignorar su contenido
