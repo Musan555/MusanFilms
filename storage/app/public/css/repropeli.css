@@ -1,0 +1,146 @@
+body {
+      margin: 0;
+      padding: 0;
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 40px;
+      max-width: 1200px;
+      margin-left: 40px;
+      padding: 80px 20px 40px 20px;
+      align-items: flex-start;
+    }
+
+    .volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #1f75fe;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(31, 117, 254, 0.5);
+    }
+
+    .poster {
+      flex: 1 1 300px;
+    }
+
+    .poster img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .info {
+      flex: 2 1 500px;
+    }
+
+    .info h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 6px rgba(31, 117, 254, 0.6);
+    }
+
+    .info p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .tags {
+      display: flex;
+      gap: 25px;
+      margin-top: 10px;
+      font-weight: bold;
+      flex-wrap: wrap;
+    }
+
+    .tags span {
+      background-color: #1e1e1e;
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid #1f75fe;
+      text-shadow: 0 0 4px #1f75fe;
+    }
+
+    .play-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 30px;
+      font-size: 1.2rem;
+      background-color: #1f75fe;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 12px rgba(31, 117, 254, 0.6);
+      transition: background-color 0.3s ease;
+    }
+
+    .play-btn:hover {
+      background-color: #0e4ec6;
+    }
+
+    .iframe-container {
+      margin: 50px auto;
+      max-width: 1000px;
+      display: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 560px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(31, 117, 254, 0.5);
+    }
+
+    @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin-left: auto;
+    padding: 20px;
+  }
+
+  .poster {
+    /* Centrar la portada horizontalmente */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .info {
+    /* Alinear texto a la izquierda */
+    align-self: stretch;
+    text-align: left;
+    margin-top: 20px; /* para separar un poco de la portada */
+  }
+
+  .info h1 {
+    font-size: 2rem;
+  }
+
+  .info p {
+    font-size: 1rem;
+  }
+
+  .tags {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  iframe {
+    height: 300px;
+  }
+}

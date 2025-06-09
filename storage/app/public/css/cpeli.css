@@ -1,0 +1,121 @@
+body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #222;
+      padding: 30px 35px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+    label {
+      font-weight: 700;
+      margin-top: 15px;
+      display: block;
+      font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    textarea,
+    select,
+    input[type="file"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background-color: #333;
+      color: white;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="url"]:focus,
+    textarea:focus,
+    select:focus,
+    input[type="file"]:focus {
+      background-color: #444;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .checkbox-group {
+      margin-top: 8px;
+      margin-bottom: 15px;
+    }
+    .checkbox-group label {
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 20px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.95rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 6px;
+      cursor: pointer;
+      vertical-align: middle;
+      transform: scale(1.1);
+    }
+    .success-message {
+      background-color: #1e7e34;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+    button[type="submit"],
+    .btn-back {
+      background-color: #1f75fe;
+      color: white;
+      font-weight: 700;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      user-select: none;
+    }
+    button[type="submit"]:hover,
+    .btn-back:hover {
+      background-color: #155cc4;
+    }
+    @media (max-width: 480px) {
+      .btn-group {
+        flex-direction: column;
+      }
+      button[type="submit"],
+      .btn-back {
+        width: 100%;
+      }
+    }

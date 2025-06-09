@@ -1,0 +1,125 @@
+ body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #222;
+      padding: 30px 35px;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    label {
+      font-weight: 700;
+      margin-top: 15px;
+      display: block;
+      font-size: 1rem;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background-color: #333;
+      color: white;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="url"]:focus,
+    textarea:focus,
+    select:focus {
+      background-color: #444;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .checkbox-group {
+      margin-top: 8px;
+      margin-bottom: 15px;
+    }
+    .checkbox-group label {
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 20px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.95rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 6px;
+      cursor: pointer;
+      vertical-align: middle;
+      transform: scale(1.1);
+    }
+    button {
+      background-color: #1f75fe;
+      color: white;
+      font-weight: 700;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #155cc4;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 25px 20px;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px 10px;
+      }
+      .container {
+        max-width: 100%;
+        padding: 20px 15px;
+        border-radius: 0;
+      }
+      label {
+        font-size: 0.9rem;
+      }
+      input[type="text"],
+      input[type="number"],
+      input[type="url"],
+      textarea,
+      select {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
