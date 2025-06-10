@@ -40,6 +40,7 @@ class LoginController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|unique:usuarios,email',
+            'telefono'=>'required|string|max:9',
             'password' => 'required|confirmed|min:6',
         ]);
 
